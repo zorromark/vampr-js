@@ -58,38 +58,32 @@ class Vampire {
   // Returns the vampire object with that name, or null if no vampire exists with that name
   vampireWithName(name) {
 
-
-    function vampireWithNameDepthFirst(vampire, name) {
-      console.log(`vampire.name ${vampire.name} name ${name}`);
-      if (vampire.name === name) {
-        return vampire;
-      }
-
-      let vampWithName;
-      for (let offspring of vampire.offspring) {
-        vampWithName = vampireWithNameDepthFirst(offspring, name);
-        if (vampWithName != null) {
-          return vampWithName;
-        }
-      }
-
-      return null;
+    if (this.name === name) {
+      return this;
     }
 
-    return vampireWithNameDepthFirst(this, name);
+    let vampire;
+    for (let offspring of this.offspring) {
+      vampire = offspring.vampireWithName(name);
+      if (vampire != null) {
+        return vampire;
+      }
+    }
+
+    return null;
   }
 
   // Returns the total number of vampires that exist
   get totalDescendents() {
-    let sum = 0;
+    let total = 0;
 
-    sum += this.numberOfOffspring;
+    total += this.numberOfOffspring;
 
     for (let offspring of this.offspring) {
-      sum += offspring.totalDescendents;
+      total += offspring.totalDescendents;
     }
 
-    return sum;
+    return total;
   }
 
   // Returns an array of all the vampires that were converted after 1980
