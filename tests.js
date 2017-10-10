@@ -12,17 +12,22 @@ describe("vampire", () => {
   
   describe("addOffspring", () => {
 
-    let offspring;
+    let offspring1;
+    let offspring2;
     beforeEach(() => {
-      offspring = new Vampire("andrew");
-      rootVampire.addOffspring(offspring);
+      offspring1 = new Vampire("andrew");
+      offspring2 = new Vampire("sarah");
+      rootVampire.addOffspring(offspring1);
+      rootVampire.addOffspring(offspring2);
     });
 
     it("should get added to offspring", () => {
-      expect(rootVampire.offspring[0]).to.equal(offspring);
+      expect(rootVampire.offspring[0]).to.equal(offspring1);
+      expect(rootVampire.offspring[1]).to.equal(offspring2);
     });
     it("should get added to offspring", () => {
-      expect(offspring.parent).to.equal(rootVampire);
+      expect(offspring1.parent).to.equal(rootVampire);
+      expect(offspring2.parent).to.equal(rootVampire);
     });
 
   })    
