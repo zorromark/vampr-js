@@ -29,9 +29,12 @@ class Vampire {
     return numberOfVampires;
   }
 
-  // returns the more senior vampire out of two vampires. (Who is closer to the original vampire)
-  moreSeniorVampire(vampire) {
+  // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
+  isMoreSeniorThan(vampire) {
+    const thisDistance = this.numberOfVampiresFromOriginal;
+    const thatDistance = vampire.numberOfVampiresFromOriginal;
 
+    return thisDistance < thatDistance;
   } 
 
   // Returns the closest common ancestor of two vampires.
