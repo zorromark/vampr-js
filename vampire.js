@@ -40,6 +40,18 @@ class Vampire {
   // Returns the closest common ancestor of two vampires.
   closestCommonAncestor(vampire) {
 
+    let ancestor1 = this;
+    let ancestor2 = vampire;
+    while(ancestor1 !== ancestor2) {
+      ancestor2 = ancestor2.creator;
+
+      if (ancestor2 === null) {
+        ancestor2 = vampire;
+        ancestor1 = ancestor1.creator;
+      }
+    }
+
+    return ancestor1;
   }
 }
 
