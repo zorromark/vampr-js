@@ -53,6 +53,41 @@ class Vampire {
 
     return ancestor1;
   }
+
+
+  // Returns the vampire object with that name, or null if no vampire exists with that name
+  vampireWithName(name) {
+
+
+    function vampireWithNameDepthFirst(vampire, name) {
+      console.log(`vampire.name ${vampire.name} name ${name}`);
+      if (vampire.name === name) {
+        return vampire;
+      }
+
+      let vampWithName;
+      for (let offspring of vampire.offspring) {
+        vampWithName = vampireWithNameDepthFirst(offspring, name);
+        if (vampWithName != null) {
+          return vampWithName;
+        }
+      }
+
+      return null;
+    }
+
+    return vampireWithNameDepthFirst(this, name);
+  }
+
+  // Returns the total number of vampires that exist
+  get totalVampires() {
+
+  }
+
+  // Returns an array of all the vampires that were converted after 1980
+  get allMillennialVampires() {
+
+  }
 }
 
 module.exports = Vampire;
