@@ -1,6 +1,7 @@
 class Vampire {
-  constructor(name) {
+  constructor(name, yearConverted) {
     this.name = name;
+    this.yearConverted = yearConverted;
     this.offspring = [];
     this.creator = null;
   }
@@ -88,7 +89,21 @@ class Vampire {
 
   // Returns an array of all the vampires that were converted after 1980
   get allMillennialVampires() {
-
+    let allMillennials = [];
+    
+    console.log( "Year Converted: " +  this.yearConverted);
+    if (this.yearConverted > 1980) {
+      allMillennials.push(this);
+    }
+    
+    for (let offspring of this.offspring) {
+      let childMillennials = offspring.allMillennialVampires
+      if (childMillennials != null) {
+        allMillennials = allMillennials.concat(childMillennials)
+      }
+    }
+    
+    return allMillennials;
   }
 }
 
