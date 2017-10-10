@@ -1,6 +1,7 @@
 class Vampire {
-  constructor(name) {
+  constructor(name, yearConverted) {
     this.name = name;
+    this.yearConverted = yearConverted;
     this.offspring = [];
     this.creator = null;
   }
