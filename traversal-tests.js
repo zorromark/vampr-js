@@ -12,13 +12,18 @@ describe("vampire", function() {
 
   describe("search for vampire with name", () => {
 
-    let offspring1;
-    let offspring2;
+    let offspring1, offspring2, offspring3, offspring4, offspring5;
     beforeEach(() => {
       offspring1 = new Vampire("andrew");
       offspring2 = new Vampire("sarah");
+      offspring3 = new Vampire("c");
+      offspring4 = new Vampire("d");
+      offspring5 = new Vampire("e");
       rootVampire.addOffspring(offspring1);
       offspring1.addOffspring(offspring2);
+      rootVampire.addOffspring(offspring3);
+      offspring3.addOffspring(offspring4);
+      offspring4.addOffspring(offspring5);
     });
     
     it("should return the vampire with that name", () => {
@@ -26,6 +31,9 @@ describe("vampire", function() {
       expect(rootVampire.vampireWithName(rootVampire.name).name).to.equal(rootVampire.name);
       expect(rootVampire.vampireWithName(offspring1.name).name).to.equal(offspring1.name);
       expect(rootVampire.vampireWithName(offspring2.name).name).to.equal(offspring2.name);
+      expect(rootVampire.vampireWithName(offspring5.name).name).to.equal(offspring5.name);
+      expect(offspring3.vampireWithName(offspring5.name).name).to.equal(offspring5.name);
+      expect(offspring2.vampireWithName(offspring5.name)).to.equal(null);
     });
 
   });
